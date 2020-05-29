@@ -1,5 +1,7 @@
 set number
 syntax on
+set encoding=utf-8
+
 
 " Disable the default Vim startup message.
 set shortmess+=I
@@ -8,6 +10,22 @@ colorscheme gruvbox
 
 if has('gui_running')
   set guifont=Cascadia_Code:h11:cANSI:qDRAFT
+endif
+
+
+" Window size
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window (for an alternative on Windows, see simalt below).
+  set lines=999 columns=999
+else
+  " This is console Vim.
+  if exists("+lines")
+    set lines=50
+  endif
+  if exists("+columns")
+    set columns=100
+  endif
 endif
 
 " This enables relative line numbering mode. With both number and
@@ -78,8 +96,10 @@ Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'valloric/youcompleteme'
+Plug 'mattn/emmet-vim'
+
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
+Plug 'kien/ctrlp.vim'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
