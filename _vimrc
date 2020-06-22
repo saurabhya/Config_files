@@ -87,6 +87,14 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " Key Mapping
 nmap <C-n> :NERDTreeToggle<CR>
 
+" skeleton file
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.cpp 0r C:\Users\Saurabh\.vim\templates\skeleton.cpp
+  augroup END
+endif
+
+
 " Plugins
 "Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
@@ -97,9 +105,11 @@ Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'mattn/emmet-vim'
-
+"Plug 'neoclide/coc.nvim'
+"Plug 'valloric/youcompleteme'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
