@@ -7,6 +7,9 @@ set encoding=utf-8
 set shortmess+=I
 
 colorscheme gruvbox
+set background=dark
+
+
 
 if has('gui_running')
   set guifont=Cascadia_Code:h11:cANSI:qDRAFT
@@ -87,6 +90,15 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " Key Mapping
 nmap <C-n> :NERDTreeToggle<CR>
 
+
+" c++ file running key mapping
+nnoremap <F8> :!g++ -o  %:r.exe % -std=c++11<Enter>
+nnoremap <F9> :!%:r.exe<Enter>
+
+" python file running key mapping
+nnoremap <F10> :!python %<Enter>
+
+
 " skeleton file
 if has("autocmd")
   augroup templates
@@ -104,9 +116,11 @@ Plug 'tpope/vim-sensible'
 Plug 'junegunn/seoul256.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
+Plug 'raimondi/delimitmate'
 Plug 'mattn/emmet-vim'
 "Plug 'neoclide/coc.nvim'
 "Plug 'valloric/youcompleteme'
+Plug 'junegunn/fzf'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
