@@ -106,6 +106,11 @@ if has("autocmd")
   augroup END
 endif
 
+" startify
+let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
+
+
+
 
 " Plugins
 "Plugins will be downloaded under the specified directory.
@@ -124,6 +129,7 @@ Plug 'junegunn/fzf'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
+Plug 'mhinz/vim-startify'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
