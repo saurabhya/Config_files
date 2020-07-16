@@ -1,6 +1,9 @@
 set number
 syntax on
 set encoding=utf-8
+set expandtab
+set shiftwidth=2
+set softtabstop=2
 
 
 " Disable the default Vim startup message.
@@ -134,6 +137,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'mhinz/vim-startify'
+"Plug 'ryanoasis/vim-devicons'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
