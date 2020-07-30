@@ -1,22 +1,24 @@
 set number
-syntax on
+
 set encoding=utf-8
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-
+syntax enable
 
 " Disable the default Vim startup message.
 set shortmess+=I
 
 colorscheme gruvbox
 
+let g:airline_theme='dark'
+
 set background=dark
 
 set spell
 
 if has('gui_running')
-  set guifont=Cascadia_Code:h11:cANSI:qDRAFT
+  set guifont=Cascadia_Code:h10:cANSI:qDRAFT
 endif
 
 
@@ -134,6 +136,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
+Plug 'tomasiser/vim-code-dark'
+Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'mhinz/vim-startify'
