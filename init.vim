@@ -2,7 +2,14 @@ set number
 syntax on
 set encoding=utf-8
 
-"colorscheme NeoSolarized
+"set colorscheme='codedark'
+let g:airline_theme='codedark'
+
+
+
+if has('gui_running')
+  set guifont=Cascadia_Code:h11:cANSI:qDRAFT
+endif
 
 " Disable the default Vim startup message.
 set shortmess+=I
@@ -10,22 +17,49 @@ set shortmess+=I
 
 " Key Mapping
 nmap <C-n> :NERDTreeToggle<CR>
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggle
 
 
-" Window size
-if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window (for an alternative on Windows, see simalt below).
-  set lines=999 columns=999
-else
-  " This is console Vim.
-  if exists("+lines")
-    set lines=50
-  endif
-  if exists("+columns")
-    set columns=100
-  endif
-endif
+
+
+let g:NERDTreeGitStatusWithFlags = 1
+"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+"let g:NERDTreeGitStatusNodeColorization = 1
+"let g:NERDTreeColorMapCustom = {
+    "\ "Staged"    : "#0ee375",  
+    "\ "Modified"  : "#d9bf91",  
+    "\ "Renamed"   : "#51C9FC",  
+    "\ "Untracked" : "#FCE77C",  
+    "\ "Unmerged"  : "#FC51E6",  
+    "\ "Dirty"     : "#FFBD61",  
+    "\ "Clean"     : "#87939A",   
+    "\ "Ignored"   : "#808080"   
+    "\ }                         
+
+
+let g:NERDTreeIgnore = ['^node_modules$']
+
+" vim-prettier
+"let g:prettier#quickfix_enabled = 0
+"let g:prettier#quickfix_auto_focus = 0
+" prettier command for coc
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" run prettier on save
+"let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+
+" ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" j/k will move virtual lines (lines that wrap)
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+
+
+
 
 " This enables relative line numbering mode. With both number and
 " relativenumber enabled, the current line shows the true line number, while
@@ -84,21 +118,50 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 
 
+"colorscheme gruvbox
+
+" sync open file with NERDTree
+" " Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+
+
 
 call plug#begin('~/AppData/Local/nvim/plugged')
-" below are some vim plugin for demonstration purpose
-Plug 'joshdick/onedark.vim'
-Plug 'iCyMind/NeoSolarized'
 
-Plug 'tpope/vim-sensible'
-Plug 'junegunn/seoul256.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-"Plug 'neoclide/coc.nvim'
-"Plug 'valloric/youcompleteme'
-Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-fugitive'
+"Plug 'tsony-tsonev/nerdtree-git-plugin'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ryanoasis/vim-devicons'
+Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-sensible'
+Plug 'scrooloose/nerdcommenter'
+"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tomasiser/vim-code-dark'
+Plug 'NLKNguyen/papercolor-theme'
+
+Plug 'morhetz/gruvbox'
+
+"Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+
 call plug#end()
