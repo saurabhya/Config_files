@@ -3,6 +3,8 @@ using namespace std;
 
 #define F first
 #define S second
+#define B begin
+#define E end
 #define PB push_back
 
 typedef vector<int> vi;
