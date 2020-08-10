@@ -123,7 +123,7 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 
 " c++ file running key mapping
-nnoremap <F8> :!g++ -o  %:r.exe % -std=c++11<Enter>
+nnoremap <F8> :!g++ -o  %:r.exe % -std=c++11 -O2 -Wall && %:r.exe<Enter>
 nnoremap <F9> :!%:r.exe<Enter>
 
 " python file running key mapping
