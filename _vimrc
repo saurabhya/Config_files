@@ -98,7 +98,7 @@ nmap <C-n> :NERDTreeToggle<CR>
 
 
 " c++ file running key mapping
-nnoremap <F8> :!g++ -o  %:r.exe % -std=c++11 -O2 -Wall && %:r.exe<Enter>
+nnoremap <F8> :!g++ -o  %:r.exe % -std=c++14 -O2 -Wall && %:r.exe<Enter>
 nnoremap <F9> :!%:r.exe<Enter>
 
 " python file running key mapping
@@ -130,6 +130,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'raimondi/delimitmate'
 Plug 'mattn/emmet-vim'
+Plug 'scrooloose/syntastic'
 Plug 'shougo/deoplete.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'valloric/youcompleteme'
@@ -137,6 +138,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
+Plug 'tomasr/molokai'
 Plug 'joshdick/onedark.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
