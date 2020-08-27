@@ -20,18 +20,22 @@ using namespace std;
 
 typedef tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> indexed_set;
 typedef vector<int> vi;
-typedef vector<vector<int>> vvi;
+typedef vector< vector<int> > vvi;
 typedef vector<string> vs;
 typedef long long ll;
 
+void solve(){
+}
+
+
 int main(){
     ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
+    cin.tie(NULL);
     int TC = 1;
-	//cin >> TC;
+    //cin >> TC;
  
     REP(tc, TC) {
-        
+        solve();
     }
 	
 }
