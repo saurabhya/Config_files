@@ -12,7 +12,7 @@ call GuiWindowMaximized(1)
 
 
 if has('gui_running')
-  set guifont=Cascadia_Code:h11:cANSI:qDRAFT
+  set guifont=Cascadia_Code_SemiLight:h11:W350:cANSI:qDRAFT
 endif
 
 " Disable the default Vim startup message.
@@ -172,6 +172,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'altercation/vim-colors-solarized'
 Plug 'joshdick/onedark.vim'
+Plug 'dracula/vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'airblade/vim-rooter'
