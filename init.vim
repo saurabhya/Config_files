@@ -2,13 +2,14 @@ set number
 syntax on
 set encoding=utf-8
 
-"set colorscheme='codedark'
+
+
 let g:airline_theme='codedark'
 
 
 
 if has('gui_running')
-  set guifont=Cascadia_Code:h11:cANSI:qDRAFT
+  set guifont=Cascadia_Code_SemiLight:h11:W350:cANSI:qDRAFT
 endif
 
 " Disable the default Vim startup message.
@@ -21,6 +22,12 @@ vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 
 
+" c++ file running key mapping
+nnoremap <F8> :!g++ -o  %:r.exe % -std=c++11 -O2 -Wall && %:r.exe<Enter>
+nnoremap <F9> :!%:r.exe<Enter>
+
+" python file running key mapping
+nnoremap <F10> :!python %<Enter>
 
 
 let g:NERDTreeGitStatusWithFlags = 1
