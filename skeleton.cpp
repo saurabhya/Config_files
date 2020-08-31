@@ -24,6 +24,14 @@ typedef vector< vector<int> > vvi;
 typedef vector<string> vs;
 typedef long long ll;
 
+void read_vec(vi& v, int n){
+	int tmp;
+	for(int i=0; i<n; i++){
+		cin>>tmp;
+		v.push_back(tmp);
+	}
+}
+
 void solve(){
 }
 
