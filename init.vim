@@ -4,6 +4,7 @@ set encoding=utf-8
 
 
 
+
 let g:airline_theme='codedark'
 
 
@@ -150,6 +151,7 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 "Plug 'tsony-tsonev/nerdtree-git-plugin'
+Plug 'raimondi/delimitmate'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
