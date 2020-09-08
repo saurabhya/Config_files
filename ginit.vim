@@ -5,8 +5,14 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-colorscheme gruvbox 	
-let g:airline_theme='dark'
+colorscheme gruvbox
+let g:gruvbox_termcolors=16
+let g:gruvbox_contrast_dark='hard'
+set termguicolors
+let g:airline_theme='base16_gruvbox_dark_hard'
+
+set TERM=xterm-256color
+
 call GuiWindowMaximized(1)
 
 
@@ -151,34 +157,26 @@ endfunction
 
 
 call plug#begin('~/AppData/Local/nvim/plugged')
-Plug 'tpope/vim-sensible'
+
 Plug 'raimondi/delimitmate'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
-"Plug 'tsony-tsonev/nerdtree-git-plugin'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-sensible'
-Plug 'scrooloose/nerdcommenter'
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-Plug 'altercation/vim-colors-solarized'
 Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'airblade/vim-rooter'
+Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
-
-"Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 
 call plug#end()
 
