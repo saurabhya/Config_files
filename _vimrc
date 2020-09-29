@@ -1,9 +1,10 @@
 set number
 
 set encoding=utf-8
-set expandtab
-set shiftwidth=3
-set softtabstop=3
+set noexpandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 syntax enable
 
 " Disable the default Vim startup message.
@@ -15,6 +16,13 @@ let g:gruvbox_contrast_dark='hard'
 set termguicolors
 
 let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_powerline_fonts = 1
+
+if exists('+termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
 
 set background=dark
 
@@ -33,7 +41,7 @@ let g:indentLine_char_list = ['|', '¦']
 
 
 if has('gui_running')
-  set guifont=Cascadia_Code_SemiLight:h10:W350:cANSI:qDRAFT
+  set guifont=Hack_Nerd_Font_Mono:h10:cANSI:qDRAFT
 endif
 
 
@@ -112,6 +120,8 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 " Key Mapping
 nmap <C-n> :NERDTreeToggle<CR>
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggle
 
 
 " c++ file running key mapping
@@ -126,6 +136,7 @@ nnoremap <F10> :!python %<Enter>
 if has("autocmd")
   augroup templates
     autocmd BufNewFile *.cpp 0r C:\Users\Saurabh\.vim\templates\skeleton.cpp
+    autocmd BufNewFile *.py 0r C:\Users\Saurabh\.vim\templates\skeleton.py
   augroup END
 endif
 
@@ -141,6 +152,7 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
 Plug 'raimondi/delimitmate'
@@ -151,12 +163,14 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'joshdick/onedark.vim'
+Plug 'djoshea/vim-autoread'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
 Plug 'mhinz/vim-startify'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'yggdroot/indentline'
 Plug 'ryanoasis/vim-devicons'
+Plug 'dracula/vim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
