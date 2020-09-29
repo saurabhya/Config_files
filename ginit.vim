@@ -1,25 +1,23 @@
 set number
-syntax on
+
 set encoding=utf-8
-set expandtab
-set shiftwidth=2
-set softtabstop=2
+set noexpandtab
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+syntax enable
 
 colorscheme gruvbox
 let g:gruvbox_termcolors=16
 let g:gruvbox_contrast_dark='hard'
 set termguicolors
-let g:airline_theme='base16_gruvbox_dark_hard'
+AirlineTheme base16_gruvbox_dark_hard
+let g:airline_powerline_fonts = 1
 
-set TERM=xterm-256color
 
 call GuiWindowMaximized(1)
+GuiFont Hack Nerd Font Mono:h11
 
-
-
-if has('gui_running')
-  set guifont=Cascadia_Code_SemiLight:h11:W350:cANSI:qDRAFT
-endif
 
 " Disable the default Vim startup message.
 set shortmess+=I
@@ -129,12 +127,19 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
 
 " c++ file running key mapping
-nnoremap <F8> :!g++ -o  %:r.exe % -std=c++11 -O2 -Wall && %:r.exe<Enter>
-nnoremap <F9> :!%:r.exe<Enter>
+nnoremap <F8> :!g++ -o  %:r.exe % -std=c++14 -O2 -Wall && %:r.exe<inputf.in>outputf.in<Enter>
+nnoremap <F9> :!g++ -o  %:r.exe % -std=c++11 -O2 -Wall && %:r.exe<Enter>
 
 " python file running key mapping
 nnoremap <F10> :!python %<Enter>
 
+" skeleton file
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.cpp 0r C:\Users\Saurabh\.vim\templates\skeleton.cpp
+    autocmd BufNewFile *.py 0r C:\Users\Saurabh\.vim\templates\skeleton.py
+  augroup END
+endif
 
 
 
@@ -161,6 +166,7 @@ call plug#begin('~/AppData/Local/nvim/plugged')
 Plug 'raimondi/delimitmate'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
@@ -171,11 +177,11 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+Plug 'scrooloose/syntastic'
 Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'airblade/vim-rooter'
-Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
 
 call plug#end()
