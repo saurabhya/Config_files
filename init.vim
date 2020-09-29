@@ -3,15 +3,11 @@ syntax on
 set encoding=utf-8
 
 
-
-
 let g:airline_theme='codedark'
 
 
 
-if has('gui_running')
-  set guifont=Cascadia_Code_SemiLight:h11:W350:cANSI:qDRAFT
-endif
+
 
 " Disable the default Vim startup message.
 set shortmess+=I
