@@ -24,8 +24,9 @@ typedef vector< vector<int> > vvi;
 typedef vector<string> vs;
 typedef long long ll;
 
-void read_vec(vi& v, int n){
-	int tmp;
+template<typename T>
+void read_vec(vector<T>& v, int n){
+	T tmp;
 	for(int i=0; i<n; i++){
 		cin>>tmp;
 		v.push_back(tmp);
@@ -39,7 +40,9 @@ void solve(){
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int TC = 1;
+	//freopen("input.txt", "r", stdin)
+    //freopen("output.txt", "w", stdout)
+	int TC = 1;
     //cin >> TC;
  
     REP(tc, TC) {
