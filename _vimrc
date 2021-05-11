@@ -1,4 +1,8 @@
 set number
+set ai
+set ruler
+
+highlight Comment ctermfg=green
 
 set encoding=utf-8
 set noexpandtab
@@ -10,34 +14,16 @@ syntax enable
 " Disable the default Vim startup message.
 set shortmess+=I
 
-colorscheme gruvbox
-let g:gruvbox_termcolors=16
-let g:gruvbox_contrast_dark='hard'
-set termguicolors
 
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='ayu_dark'
 let g:airline_powerline_fonts = 1
 
-if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-let g:gruvbox_invert_selection='0'
 
-set background=dark
+"set background=dark
 
 set spell
 
 
-" rainbow_paranthesis configuration
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-
-" indentline configuration
-let g:indentLine_char_list = ['|', '¦']
 
 
 if has('gui_running')
@@ -47,27 +33,6 @@ endif
 
 au GUIEnter * simalt ~x
 
-" Window size
-"if has("gui_running")
-  " GUI is running or is about to start.
-  " Maximize gvim window (for an alternative on Windows, see simalt below).
- " set lines=999 columns=999
-"else
-  " This is console Vim.
- " if exists("+lines")
-  "  set lines=50
-  "endif
- " if exists("+columns")
-  "  set columns=100
-  "endif
-"endif
-
-" This enables relative line numbering mode. With both number and
-" relativenumber enabled, the current line shows the true line number, while
-" all other lines (above and below) are numbered relative to the current line.
-" This is useful because you can tell, at a glance, what count is needed to
-" jump up or down to a particular line, by {count}k to go up or {count}j to go
-" down.
 set relativenumber
 
 " Always show the status line at the bottom, even if you only have one window open.
@@ -101,27 +66,26 @@ nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 " Disable audible bell because it's annoying.
 set noerrorbells visualbell t_vb=
 
-" Try to prevent bad habits like using the arrow keys for movement. This is
-" not the only possible bad habit. For example, holding down the h/j/k/l keys
-" for movement, rather than using more efficient movement commands, is also a
-" bad habit. The former is enforceable through a .vimrc, while we don't know
-" how to prevent the latter.
-" Do this in normal mode...
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
-" ...and in insert mode
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
-
 
 " Key Mapping
 nmap <C-n> :NERDTreeToggle<CR>
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
+nmap <C-a> ggVG
+nmap <C-c> "+y
+nmap <C-p> "+p
+
+" Floaterm configuration
+let g:floaterm_keymap_new    = '<F5>'
+let g:floaterm_keymap_prev   = '<F6>'
+let g:floaterm_keymap_next   = '<F11>'
+let g:floaterm_keymap_toggle = '<F12>'
+
+
+" Set floaterm window's background to black
+hi Floaterm guibg=black
+" Set floating window border line color to cyan, and background to orange
+hi FloatermBorder guibg=green 
 
 
 " c++ file running key mapping
@@ -141,8 +105,23 @@ if has("autocmd")
 endif
 
 " startify
-let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
-
+"let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
+let g:startify_custom_header = [
+			\ '     _______.     ___      __    __  .______          ___      .______    __    __     ',
+			\ '   /         |   /   \    |  |  |  | |   _  \        /   \     |   _  \  |  |  |  |    ',
+			\ '   |    (----`  /  ^  \   |  |  |  | |  |_)  |      /  ^  \    |  |_)  | |  |__|  |    ',
+			\ '    \   \      /  /_\  \  |  |  |  | |      /      /  /_\  \   |   _  <  |   __   |    ',
+			\ '.----)   |    /  _____  \ |  `--`  | |  |\  \----./  _____  \  |  |_)  | |  |  |  |    ',
+			\ '|_______/    /__/     \__\ \______/  | _| `._____/__/     \__\ |______/  |__|  |__|    ',
+			\ '                                                                                       ',
+            \ '            ____    ____  ___       _______       ___   ____    ____                ',
+            \ '            \   \  /   / /   \     |       \     /   \  \   \  /   /                ',
+            \ '             \   \/   / /  ^  \    |  .--.  |   /  ^  \  \   \/   /                 ',
+            \ '              \_    _/ /  /_\  \   |  |  |  |  /  /_\  \  \      /                  ',
+            \ '                |  |  /  _____  \  |  .--.  | /  _____  \  \    /                   ',
+            \ '                |__| /__/     \__\ |_______/ /__/     \__\  \__/                    ',
+            \ '                                                                                    ',
+			\ ]
 
 
 
@@ -152,28 +131,30 @@ call plug#begin('~/.vim/plugged')
 
 " Declare the list of plugins.
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'sainnhe/vim-color-forest-night'
 Plug 'vim-airline/vim-airline'
 Plug 'raimondi/delimitmate'
+Plug 'lervag/vimtex'
 Plug 'scrooloose/syntastic'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
-Plug 'joshdick/onedark.vim'
 Plug 'djoshea/vim-autoread'
-Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'voldikss/vim-floaterm'
+Plug 'srcery-colors/srcery-vim'
 Plug 'mhinz/vim-startify'
-Plug 'kien/rainbow_parentheses.vim'
 Plug 'yggdroot/indentline'
 Plug 'ryanoasis/vim-devicons'
-Plug 'dracula/vim'
+Plug 'vim-scripts/Wombat'
+Plug 'jaredgorski/spacecamp'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
+
+
 
 
 " coc configuration
@@ -232,3 +213,18 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+
+colorscheme gruvbox
+let g:everforest_background = 'hard'
+set t_Co=256
+
+
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+
+" For dark version.
+set background=dark
+

@@ -1,4 +1,9 @@
 set number
+set ai
+set ruler
+
+highlight Comment ctermfg=green
+
 
 set encoding=utf-8
 set noexpandtab
@@ -7,16 +12,20 @@ set tabstop=4
 set softtabstop=4
 syntax enable
 
-colorscheme gruvbox
-let g:gruvbox_termcolors=16
-let g:gruvbox_contrast_dark='hard'
 set termguicolors
-AirlineTheme base16_gruvbox_dark_hard
+
+let g:airline_theme='ayu_dark'
 let g:airline_powerline_fonts = 1
 
 
+colorscheme gruvbox
+set t_Co=256
+set background=dark
+
+
+
 call GuiWindowMaximized(1)
-GuiFont Hack Nerd Font Mono:h11
+GuiFont Hack Nerd Font Mono:h10
 
 
 " Disable the default Vim startup message.
@@ -32,9 +41,6 @@ nmap ++ <plug>NERDCommenterToggle
 
 
 let g:NERDTreeGitStatusWithFlags = 1
-"let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-"let g:NERDTreeGitStatusNodeColorization = 1
-"let g:NERDTreeColorMapCustom = {
     "\ "Staged"    : "#0ee375",  
     "\ "Modified"  : "#d9bf91",  
     "\ "Renamed"   : "#51C9FC",  
@@ -47,15 +53,6 @@ let g:NERDTreeGitStatusWithFlags = 1
 
 
 let g:NERDTreeIgnore = ['^node_modules$']
-
-" vim-prettier
-"let g:prettier#quickfix_enabled = 0
-"let g:prettier#quickfix_auto_focus = 0
-" prettier command for coc
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" run prettier on save
-"let g:prettier#autoformat = 0
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 
 " ctrlp
@@ -143,6 +140,20 @@ endif
 
 
 
+
+" Floaterm configuration
+let g:floaterm_keymap_new    = '<F5>'
+let g:floaterm_keymap_prev   = '<F6>'
+let g:floaterm_keymap_next   = '<F7>'
+let g:floaterm_keymap_toggle = '<F12>'
+
+" Set floaterm window's background to black
+hi Floaterm guibg=black
+" Set floating window border line color to cyan, 
+hi FloatermBorder guifg=green 
+
+
+
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()        
@@ -172,16 +183,15 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-sensible'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/syntastic'
 Plug 'joshdick/onedark.vim'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'tomasiser/vim-code-dark'
 Plug 'airblade/vim-rooter'
+Plug 'voldikss/vim-floaterm'
+Plug 'srcery-colors/srcery-vim'
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -195,7 +205,7 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+noremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -242,3 +252,5 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+
